@@ -38,10 +38,22 @@ export const deleteTodo = async (id: string) => {
   }
 }
 
-export const updateTodo = async (id: string, check: boolean) => {
+export const updateStateTodo = async (id: string, check: boolean) => {
   try {
     const response = await apiClient.put(`/api/todos/${id}`, {
       completed: check,
+    })
+    return response.data
+  } catch (error) {
+    console.error('Error in updateTodo:', error)
+    throw error
+  }
+}
+
+export const updateTextTodo = async (id: string, name: string) => {
+  try {
+    const response = await apiClient.put(`/api/todos/${id}`, {
+      name: name,
     })
     return response.data
   } catch (error) {
